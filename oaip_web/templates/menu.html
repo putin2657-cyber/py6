@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="text-center">
+    <h1>Главное меню (веб)</h1>
+    <p>Выберите действие</p>
+    <a href="{{ url_for('login') }}" class="btn btn-primary m-2">Авторизация</a>
+    <a href="{{ url_for('register') }}" class="btn btn-success m-2">Регистрация</a>
+    <a href="{{ url_for('users') }}" class="btn btn-outline-secondary m-2">Список пользователей</a>
+  </div>
+{% endblock %}
+

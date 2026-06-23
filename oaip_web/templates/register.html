@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h2 class="mb-3" style="color:var(--accent)">Регистрация</h2>
+  <form method="post" class="w-50 form-hero p-3" id="regForm">
+    <div class="mb-3">
+      <label class="form-label">Логин</label>
+      <input name="login" id="login" class="form-control" placeholder="Придумайте логин" required>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Пароль</label>
+      <input name="parol" id="parol" type="password" class="form-control" placeholder="Придумайте пароль" required>
+      <div class="form-text" style="color:var(--muted)">Пароль минимум 6 символов и хотя бы 1 спецсимвол (например: _ - ! @ #)</div>
+    </div>
+    <div id="pwRules" class="mb-3">
+      <small id="lenRule" class="text-muted">• Длина ≥ 6</small><br>
+      <small id="specRule" class="text-muted">• Есть спецсимвол</small>
+    </div>
+    <button class="btn btn-success" type="submit">Зарегистрироваться</button>
+    <a href="{{ url_for('index') }}" class="btn btn-secondary">Назад</a>
+  </form>
+
+  <script>
+    // Простая клиентская валидация для удобства пользователя
+    const parol = document.getElementById('parol');
+    const lenRule = document.getElementById('lenRule');
+    const specRule = document.getElementById('specRule');
+
+    parol.addEventListener('input', () => {
+      const v = parol.value;
+      if (v.length >= 6) {
+        lenRule.classList.remove('text-muted');
+        lenRule.classList.add('text-success');
+      } else {
+        lenRule.classList.remove('text-success');
+        lenRule.classList.add('text-muted');
+      }
+      if (/[^A-Za-z0-9]/.test(v)) {
+        specRule.classList.remove('text-muted');
+        specRule.classList.add('text-success');
+      } else {
+        specRule.classList.remove('text-success');
+        specRule.classList.add('text-muted');
+      }
+    });
+  </script>
+
+{% endblock %}
+

@@ -1,0 +1,69 @@
+:root{
+  --bg:#0b0b0b;
+  --panel:#111111;
+  --accent:#e11d1d;
+  --muted:#999;
+}
+body{
+  background: linear-gradient(180deg, #050505 0%, #0b0b0b 100%);
+  color:#f4f4f4;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+.container{
+  animation: fadeInUp .6s ease both;
+}
+
+/* Navbar */
+.navbar-dark .navbar-brand{ font-weight:700; color:var(--accent); }
+.navbar-dark .nav-link{ color: #ddd; }
+.navbar-dark .nav-link:hover{ color: white; }
+
+/* Card/panels */
+.card, .w-50 {
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border: 1px solid rgba(255,255,255,0.04);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.6);
+}
+
+/* Buttons */
+.btn-primary{
+  background: linear-gradient(90deg, var(--accent), #a80f0f);
+  border: none;
+  box-shadow: 0 6px 18px rgba(225,29,29,0.18);
+}
+.btn-primary:hover{ transform: translateY(-2px); }
+.btn-success{ background: transparent; border: 1px solid var(--accent); color: var(--accent); }
+
+/* Form animations */
+.form-control{
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.08);
+  color: #fff;
+}
+.form-control:focus{
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 6px 18px rgba(225,29,29,0.12);
+}
+
+/* Password rule indicators */
+.text-success{ color: #6ee7b7 !important; }
+
+/* Subtle animations */
+@keyframes fadeInUp{
+  from{ opacity:0; transform: translateY(8px);}
+  to{ opacity:1; transform: translateY(0);}
+}
+
+/* Form containers */
+.form-hero{ padding: 28px; border-radius: 10px; }
+
+/* Table */
+.table thead th{ border-bottom: 1px solid rgba(255,255,255,0.06); }
+.table tbody tr:hover{ background: rgba(225,29,29,0.03); }
+
+/* Small responsive tweak for popup-like width */
+@media (max-width:420px){
+  .w-50{ width: 100% !important; }
+}
+
