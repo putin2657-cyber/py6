@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, flash, session
-from oaip.connect_db import ConnectDB
-from oaip.validators import validate_login, validate_password
+from oaip_web.oaip import ConnectDB
+from oaip_web.oaip import validate_login, validate_password
 
 app = Flask(__name__, static_folder='static')
 app.secret_key = 'replace-with-strong-secret'
