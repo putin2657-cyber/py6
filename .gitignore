@@ -1,0 +1,36 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# IDEs
+.idea/
+.vscode/
+
+# macOS
+.DS_Store
+
+# Byte-compiled / cache
+*.pyc
+.pytest_cache/
+
+# Local environment files
+.env
+
+# Sensitive files that should not be committed
+*.key
+*.pem
+
+# Node / build
+node_modules/
+dist/
+
+# Keep images out of the repo by default — you can remove this line if you want to track images
+# images/
+
