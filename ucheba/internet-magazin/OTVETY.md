@@ -6,7 +6,9 @@
 
 - [dfd_context.png](dfd_context.png) — контекстная DFD
 - [dfd_uroven1.png](dfd_uroven1.png) — DFD 1-го уровня
-- [idef0_a-0.png](idef0_a-0.png) — диаграмма A-0
+- **[IDEF0_A-0.odg](IDEF0_A-0.odg)** — диаграмма A-0 в LibreOffice Draw (пункт 3, открывать в Draw)
+- [IDEF0_A-0.png](IDEF0_A-0.png) — тот же A-0 картинкой, если нужен PNG
+- [idef0_a-0.png](idef0_a-0.png) — черновик A-0
 
 ---
 
@@ -97,5 +99,5 @@
 
 1. Пункт 1 — скопировать ФТ-1…ФТ-4 и НФТ-1.
 2. Пункт 2 — вставить `dfd_context.png` и `dfd_uroven1.png`, подписи: «Рисунок 1 — Контекстная DFD», «Рисунок 2 — DFD 1-го уровня».
-3. Пункт 3 — вставить `idef0_a-0.png`, подпись: «Рисунок 3 — Диаграмма IDEF0 A-0».
+3. Пункт 3 — открыть `IDEF0_A-0.odg` в LibreOffice Draw (файл → экспорт в PNG/PDF, если надо вставить в Word). Подпись: «Рисунок 3 — Диаграмма IDEF0 A-0».
 4. Пункт 4 — абзац про частичное наличие.
