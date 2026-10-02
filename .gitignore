@@ -34,3 +34,6 @@ dist/
 # Keep images out of the repo by default — you can remove this line if you want to track images
 # images/
 
+
+# LibreOffice lock files
+.~lock.*
