@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Практическая 2, вариант 19 — оформление как в тетради."""
+"""Практическая 2, вариант 19 — тетрадь + методички Жилкиной."""
 
 from pathlib import Path
 
@@ -17,154 +17,133 @@ FONTB = "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"
 fp = font_manager.FontProperties(fname=FONT)
 fpb = font_manager.FontProperties(fname=FONTB)
 
-BG = (255, 251, 240)
+PAPER = (252, 252, 244)
+GRID = (214, 226, 236)
+MARGIN = (214, 150, 150)
 INK = (28, 28, 28)
 GREEN = (22, 122, 58)
 BLUE = (28, 90, 168)
-RED = (196, 40, 40)
-YELLOW = (255, 210, 70)
-WHITE = (255, 255, 255)
 LINE = (50, 50, 50)
-PAPER_G = (220, 245, 226)
-PAPER_B = (220, 236, 255)
-PAPER_Y = (255, 248, 210)
-W = 1240
+WHITE = (255, 255, 255)
+YELLOW = (255, 236, 170)
+W = 1180
+STEP = 38
+LEFT = 84
 
 
 def F(sz, bold=False):
     return ImageFont.truetype(FONTB if bold else FONT, sz)
 
 
-def T(d, xy, s, sz=24, fill=INK, bold=False, anchor="lt"):
-    d.text(xy, s, font=F(sz, bold), fill=fill, anchor=anchor)
+def notebook(rows):
+    h = (rows + 2) * STEP
+    im = Image.new("RGB", (W, h), PAPER)
+    d = ImageDraw.Draw(im)
+    for x in range(0, W, STEP):
+        d.line([(x, 0), (x, h)], fill=GRID, width=1)
+    for y in range(0, h, STEP):
+        d.line([(0, y), (W, y)], fill=GRID, width=1)
+    d.line([(60, 0), (60, h)], fill=MARGIN, width=2)
+    return im, d
 
 
-def table(d, origin, col_w, rh, headers, rows, head=YELLOW, fsize=20, last=None):
-    x0, y0 = origin
+def write(d, row, s, sz=22, fill=INK, bold=False):
+    d.text((LEFT, row * STEP + 7), s, font=F(sz, bold), fill=fill)
+
+
+def table(d, row, col_w, headers, rows, fsize=18, head=YELLOW):
+    x0 = LEFT
+    y0 = row * STEP
+    rh = STEP
     x = x0
     for i, h in enumerate(headers):
         box = [x, y0, x + col_w[i], y0 + rh]
-        d.rectangle(box, fill=head, outline=LINE, width=3)
-        T(d, ((box[0] + box[2]) / 2, (box[1] + box[3]) / 2), h, fsize, bold=True, anchor="mm")
+        d.rectangle(box, fill=head, outline=LINE, width=2)
+        d.text(
+            ((box[0] + box[2]) / 2, (box[1] + box[3]) / 2),
+            h,
+            font=F(fsize, True),
+            fill=INK,
+            anchor="mm",
+        )
         x += col_w[i]
-    for r, row in enumerate(rows):
+    for r, rw in enumerate(rows):
         x = x0
         y = y0 + (r + 1) * rh
-        fill_row = last if last and r == len(rows) - 1 else WHITE
-        for i, cell in enumerate(row):
+        for i, cell in enumerate(rw):
             box = [x, y, x + col_w[i], y + rh]
-            d.rectangle(box, fill=fill_row, outline=LINE, width=3)
-            T(d, ((box[0] + box[2]) / 2, (box[1] + box[3]) / 2), cell, fsize - 1, anchor="mm")
+            d.rectangle(box, fill=WHITE, outline=LINE, width=2)
+            d.text(
+                ((box[0] + box[2]) / 2, (box[1] + box[3]) / 2),
+                cell,
+                font=F(fsize),
+                fill=INK,
+                anchor="mm",
+            )
             x += col_w[i]
-    return y0 + (len(rows) + 1) * rh
-
-
-def header(d, title, subtitle=None):
-    d.rectangle([0, 0, W, 86], fill=(40, 40, 40))
-    T(d, (W / 2, 28), title, 30, (255, 255, 255), True, "mm")
-    if subtitle:
-        T(d, (W / 2, 62), subtitle, 22, (255, 255, 255), False, "mm")
+    used = 1 + len(rows)
+    return row + used
 
 
 def graph_task2(path):
-    xs = np.linspace(-2.4, 2.6, 500)
-    fig, ax = plt.subplots(figsize=(6.4, 4.2), dpi=140)
-    fig.patch.set_facecolor("#fffbf0")
+    xs = np.linspace(-2.3, 2.5, 400)
+    fig, ax = plt.subplots(figsize=(5.6, 3.6), dpi=130)
+    fig.patch.set_facecolor("#fcfcf4")
     ax.set_facecolor("#fffef8")
-    ax.axhline(0, color="#222", lw=1.15)
-    ax.axvline(0, color="#222", lw=1.05)
-    ax.plot(xs, 2 * xs**2, color="#1c5aa8", lw=2.5, label="y = 2x²")
-    ax.plot(xs, 0.5 * xs + 2, color="#c42828", lw=2.5, label="y = 0,5x + 2")
-    ax.plot([-0.8828], [1.5586], "o", color="#167a3a", ms=9, zorder=5)
-    ax.plot([1.1328], [2.5664], "o", color="#888", ms=7, zorder=5)
-    ax.annotate(
-        "ξ ≈ −0,883",
-        xy=(-0.8828, 1.5586),
-        xytext=(-2.25, 6.4),
-        fontproperties=fpb,
-        fontsize=11,
-        color="#167a3a",
-        arrowprops=dict(arrowstyle="->", color="#167a3a"),
-    )
-    ax.annotate(
-        "≈ 1,13",
-        xy=(1.1328, 2.5664),
-        xytext=(1.35, 5.4),
-        fontproperties=fp,
-        fontsize=10,
-        color="#555",
-        arrowprops=dict(arrowstyle="->", color="#888"),
-    )
-    ax.axvspan(-1, 0, color="#167a3a", alpha=0.08)
-    ax.set_xlim(-2.4, 2.6)
-    ax.set_ylim(-0.4, 8.2)
-    ax.set_xlabel("x", fontproperties=fp)
-    ax.set_ylabel("y", fontproperties=fp)
-    ax.grid(True, ls="--", alpha=0.38)
-    ax.legend(prop=fp, loc="upper right", fontsize=10)
-    ax.set_title("касательные", fontproperties=fp, fontsize=12)
+    ax.axhline(0, color="#222", lw=1.1)
+    ax.axvline(0, color="#222", lw=1.0)
+    ax.plot(xs, 2 * xs**2, color="#1c5aa8", lw=2.3, label="y = 2x²")
+    ax.plot(xs, 0.5 * xs + 2, color="#c42828", lw=2.3, label="y = 0,5x+2")
+    ax.plot([-0.8828], [1.5586], "o", color="#167a3a", ms=8)
+    ax.plot([1.1328], [2.5664], "o", color="#777", ms=6)
+    ax.annotate("ξ", xy=(-0.8828, 1.5586), xytext=(-2.05, 4.8),
+                fontproperties=fpb, fontsize=12, color="#167a3a",
+                arrowprops=dict(arrowstyle="->", color="#167a3a"))
+    ax.set_xlim(-2.3, 2.5)
+    ax.set_ylim(-0.3, 8)
+    ax.grid(True, ls="--", alpha=0.35)
+    ax.legend(prop=fp, loc="upper right", fontsize=9)
+    ax.set_title("касательные", fontproperties=fp, fontsize=11)
     fig.tight_layout()
     fig.savefig(path, facecolor=fig.get_facecolor())
     plt.close()
 
 
-def sheet_z1():
-    im = Image.new("RGB", (W, 2680), BG)
-    d = ImageDraw.Draw(im)
-    header(d, "Практическая работа № 2", "Решение нелинейных уравнений   ·   Вариант 19")
+def sheet_titul_z1a():
+    im, d = notebook(34)
+    write(d, 1, "Практическая работа № 2", 26, bold=True)
+    write(d, 2, "Решение нелинейных уравнений", 22)
+    write(d, 3, "Вариант  19", 22)
 
-    y = 110
-    T(d, (40, y), "Задание 1", 28, BLUE, True)
-    y += 46
-    T(d, (40, y), "Отделить аналитически корни алгебраического уравнения.", 22)
-    y += 34
-    T(d, (40, y), "Уточнить наименьший по модулю корень уравнения методом хорд", 22)
-    y += 34
-    T(d, (40, y), "с точностью ε. Найти остальные корни, используя схему Горнера.", 22)
-    y += 48
-    d.rounded_rectangle([36, y, 1204, y + 64], radius=10, fill=PAPER_Y, outline=LINE, width=2)
-    T(d, (56, y + 16), "4x³ − 2x² + 3x + 10 = 0              ε = 0,01", 26, bold=True)
-    y += 88
+    write(d, 5, "Задание 1:", 24, BLUE, True)
+    write(d, 6, "Отделить аналитически корни алгебраического уравнения.", 20)
+    write(d, 7, "Уточнить наименьший по модулю корень методом хорд с точностью ε.", 20)
+    write(d, 8, "Найти остальные корни, используя схему Горнера.", 20)
+    write(d, 9, "4x³ − 2x² + 3x + 10 = 0          ε = 0,01", 24, bold=True)
 
-    T(d, (40, y), "f(x)  =  4x³ − 2x² + 3x + 10", 24, bold=True)
-    y += 40
-    T(d, (40, y), "f'(x) =  12x² − 4x + 3", 24)
-    y += 44
-    T(d, (40, y), "f'(x) = 0:", 24, BLUE, True)
-    y += 38
-    T(d, (40, y), "12x² − 4x + 3 = 0", 24)
-    y += 38
-    T(d, (40, y), "D = (−4)² − 4·12·3 = 16 − 144 = −128 < 0", 24, bold=True)
-    y += 40
-    T(d, (40, y), "действительных корней f' нет  →  f строго возрастает, один корень", 22)
-    y += 52
+    write(d, 11, "f(x)  =  4x³ − 2x² + 3x + 10", 22, bold=True)
+    write(d, 12, "f'(x) =  12x² − 4x + 3", 22)
+    write(d, 13, "f'(x) = 0:", 22, BLUE, True)
+    write(d, 14, "12x² − 4x + 3 = 0", 22)
+    write(d, 15, "D = 16 − 4·12·3 = 16 − 144 = −128 < 0", 22)
+    write(d, 16, "критических точек нет,  f' > 0 всегда  →  f строго возрастает", 20)
 
-    T(d, (40, y), "таблица знаков f(x)", 24, BLUE, True)
-    y += 40
-    y = table(
-        d,
-        (80, y),
-        [150, 190, 190, 190, 190],
-        54,
+    write(d, 18, "таблица знаков f(x)", 22, BLUE, True)
+    r = table(
+        d, 19,
+        [140, 160, 160, 160, 160],
         ["x", "−∞", "−2", "−1", "+∞"],
         [["f(x)", "−", "−36", "+1", "+"]],
-        fsize=22,
+        fsize=20,
     )
-    y += 22
-    T(d, (40, y), "смена знака только на [−2; −1]     ξ ∈ [−2; −1]", 24, GREEN, True)
-    y += 36
-    T(d, (40, y), "это единственный действительный корень = наименьший по модулю", 22)
-    y += 50
+    write(d, r + 1, "смена знака:   ξ ∈ [−2; −1]", 22, GREEN, True)
+    write(d, r + 2, "единственный действительный = наименьший по модулю", 20)
 
-    T(d, (40, y), "f''(x) = 24x − 4", 24, bold=True)
-    y += 40
-    T(d, (40, y), "для хорд неподвижен тот конец, где f · f'' > 0", 22)
-    y += 40
-    y = table(
-        d,
-        (80, y),
-        [200, 300, 300],
-        52,
+    write(d, r + 4, "f''(x) = 24x − 4", 22, bold=True)
+    write(d, r + 5, "таблица на концах отрезка", 22, BLUE, True)
+    r = table(
+        d, r + 6,
+        [180, 220, 220],
         ["", "x = −2", "x = −1"],
         [
             ["f", "−36", "+1"],
@@ -172,104 +151,90 @@ def sheet_z1():
             ["f''", "−52", "−28"],
             ["f · f''", "+  > 0", "−  < 0"],
         ],
-        fsize=22,
+        fsize=18,
     )
-    y += 22
-    T(d, (40, y), "неподвижен a = −2,   приближения со стороны b,   x₀ = −1", 24, GREEN, True)
-    y += 44
-    T(d, (40, y), "xₙ₊₁ = xₙ − f(xₙ)·(xₙ − a) / (f(xₙ) − f(a))", 24, BLUE, True)
-    y += 44
-    y = table(
-        d,
-        (40, y),
-        [90, 250, 250, 250, 230],
-        52,
+    write(d, r + 1, "f(a)·f''(a) > 0  →  неподвижен a = −2,   x₀ = b = −1", 21, GREEN, True)
+    return im.crop((0, 0, W, (r + 3) * STEP))
+
+
+def sheet_z1b():
+    im, d = notebook(32)
+    write(d, 1, "Задание 1  ·  хорды и Горнер", 24, BLUE, True)
+    write(d, 2, "формула (4) методички, неподвижен a:", 20)
+    write(d, 3, "xₙ₊₁ = xₙ − f(xₙ)·(xₙ − a) / (f(xₙ) − f(a))     x₀ = −1", 20, bold=True)
+    write(d, 4, "a = −2,   f(a) = −36", 20)
+
+    r = table(
+        d, 6,
+        [90, 210, 210, 220, 200],
         ["n", "xₙ", "f(xₙ)", "xₙ₊₁", "|Δx|"],
         [
             ["0", "−1,000000", "1,000000", "−1,027027", "0,027027"],
             ["1", "−1,027027", "0,476181", "−1,039729", "0,012702"],
             ["2", "−1,039729", "0,222805", "−1,045635", "0,005907"],
         ],
-        fsize=20,
-        last=(255, 228, 180),
+        fsize=17,
     )
-    y += 22
-    T(d, (40, y), "|Δx| = 0,005907 < 0,01  →  стоп", 24)
-    y += 44
-    d.rounded_rectangle([40, y, 1200, y + 88], radius=14, fill=PAPER_G, outline=GREEN, width=4)
-    T(d, (60, y + 26), "ξ₁ = −1,046", 34, GREEN, True)
-    y += 112
+    write(d, r + 1, "|xₙ₊₁ − xₙ| = 0,005907 ≤ 0,01  →  стоп", 21)
+    write(d, r + 2, "ξ₁ = xₙ₊₁ = −1,046", 26, GREEN, True)
 
-    T(d, (40, y), "схема Горнера   (деление на x + 1,045635)", 24, BLUE, True)
-    y += 40
-    y = table(
-        d,
-        (60, y),
-        [220, 190, 230, 230, 220],
-        54,
+    write(d, r + 4, "схема Горнера   (деление на x − ξ,   ξ = −1,045635)", 20, BLUE, True)
+    r = table(
+        d, r + 5,
+        [200, 180, 200, 200, 190],
         ["", "4", "−2", "3", "10"],
-        [["−1,045635", "4", "−6,182541", "9,464684", "0,103 ≈ 0"]],
-        fsize=20,
+        [
+            ["ξ · bᵢ₋₁", "—", "−4,182541", "6,464684", "−9,896608"],
+            ["bᵢ", "4", "−6,182541", "9,464684", "0,103 ≈ 0"],
+        ],
+        fsize=16,
     )
-    y += 28
-    T(d, (40, y), "4x² − 6,182541 x + 9,464684 = 0", 24, bold=True)
-    y += 40
-    T(d, (40, y), "D = (−6,182541)² − 4·4·9,464684 = 38,224 − 151,435 = −113,21 < 0", 22)
-    y += 38
-    T(d, (40, y), "остальные корни комплексные", 24)
-    y += 44
-    d.rounded_rectangle([40, y, 1200, y + 130], radius=16, fill=PAPER_G, outline=GREEN, width=4)
-    T(d, (60, y + 22), "ξ₂,₃ = 0,773 ± 1,330 i", 32, GREEN, True)
-    T(d, (60, y + 78), "действительный наименьший по модулю:   ξ₁ = −1,046", 24)
-    y += 150
-
-    return im.crop((0, 0, W, y + 20))
+    write(d, r + 1, "4x² − 6,182541 x + 9,464684 = 0", 21, bold=True)
+    write(d, r + 2, "D = 38,224 − 151,435 = −113,21 < 0", 21)
+    write(d, r + 3, "остальные корни комплексные", 21)
+    write(d, r + 5, "ξ₂,₃ = 0,773 ± 1,330 i", 26, GREEN, True)
+    write(d, r + 6, "наименьший по модулю действительный:   ξ₁ = −1,046", 20)
+    return im.crop((0, 0, W, (r + 8) * STEP))
 
 
 def sheet_z2():
     gpath = OUT / "_tmp_g2.png"
     graph_task2(gpath)
     gim = Image.open(gpath).convert("RGB")
-    gim = gim.resize((680, int(680 * gim.height / gim.width)), Image.Resampling.LANCZOS)
+    gim = gim.resize((480, int(480 * gim.height / gim.width)), Image.Resampling.LANCZOS)
 
-    im = Image.new("RGB", (W, 2100), BG)
-    d = ImageDraw.Draw(im)
-    header(d, "Задание 2   ·   графически + касательные", "Практическая работа № 2   ·   Вариант 19")
+    im, d = notebook(40)
+    write(d, 1, "Задание 2:", 24, BLUE, True)
+    write(d, 2, "Отделить графически корни. Уточнить наименьший по модулю", 20)
+    write(d, 3, "корень уравнения методом касательных с точностью ε.", 20)
+    write(d, 4, "2x² = 0,5x + 2          ε = 0,001", 24, bold=True)
 
-    y = 110
-    T(d, (40, y), "Отделить графически корни. Уточнить наименьший по модулю", 22)
-    y += 34
-    T(d, (40, y), "корень уравнения методом касательных с точностью ε.", 22)
-    y += 46
-    d.rounded_rectangle([36, y, 1204, y + 64], radius=10, fill=PAPER_Y, outline=LINE, width=2)
-    T(d, (56, y + 16), "2x² = 0,5x + 2              ε = 0,001", 26, bold=True)
-    y += 86
+    write(d, 6, "g(x) = 2x² − 0,5x − 2 = 0", 22, bold=True)
+    write(d, 7, "y₁ = 2x²          y₂ = 0,5x + 2", 22)
+    write(d, 8, "g'(x) = 4x − 0,5          g''(x) = 4", 22)
 
-    T(d, (40, y), "g(x)  =  2x² − 0,5x − 2  =  0", 24, bold=True)
-    y += 40
-    T(d, (40, y), "y₁ = 2x²     (парабола)          y₂ = 0,5x + 2     (прямая)", 24, BLUE, True)
-    y += 40
-    T(d, (40, y), "g'(x) = 4x − 0,5          g''(x) = 4", 24)
-    y += 50
+    write(d, 10, "точки для графика", 20, BLUE, True)
+    table(
+        d, 11,
+        [120, 140, 160, 140],
+        ["x", "2x²", "0,5x+2", "g(x)"],
+        [
+            ["−2", "8", "1", "7"],
+            ["−1", "2", "1,5", "0,5"],
+            ["0", "0", "2", "−2"],
+            ["1", "2", "2,5", "−0,5"],
+            ["2", "8", "3", "5"],
+        ],
+        fsize=17,
+    )
+    im.paste(gim, (670, 9 * STEP))
+    write(d, 18, "ξ ∈ [−1; 0]   и   ξ ∈ [1; 2]", 21)
+    write(d, 19, "меньший по | |  на  [−1; 0]", 22, GREEN, True)
 
-    im.paste(gim, (40, y))
-    gx = 750
-    gy = y + 20
-    T(d, (gx, gy), "пересечения:", 24, BLUE, True)
-    T(d, (gx, gy + 44), "ξ ∈ [−1; 0]", 26, GREEN, True)
-    T(d, (gx, gy + 88), "и ещё  ξ ∈ [1; 2]", 22)
-    T(d, (gx, gy + 136), "меньший по | |", 24)
-    T(d, (gx, gy + 176), "на [−1; 0]", 26, GREEN, True)
-    T(d, (gx, gy + 230), "берём этот отрезок", 22)
-
-    y += gim.height + 28
-    T(d, (40, y), "таблица на концах отрезка [−1; 0]", 24, BLUE, True)
-    y += 40
-    y = table(
-        d,
-        (80, y),
-        [220, 300, 300],
-        52,
+    write(d, 21, "таблица на концах [−1; 0]", 21, BLUE, True)
+    r = table(
+        d, 22,
+        [180, 220, 220],
         ["", "a = −1", "b = 0"],
         [
             ["g", "+0,5", "−2"],
@@ -277,46 +242,45 @@ def sheet_z2():
             ["g''", "+4", "+4"],
             ["g · g''", "+  > 0", "−  < 0"],
         ],
-        fsize=22,
+        fsize=18,
     )
-    y += 22
-    T(d, (40, y), "g(a)·g''(a) > 0  →  x₀ = a = −1", 24, GREEN, True)
-    y += 42
-    T(d, (40, y), "xₙ₊₁ = xₙ − g(xₙ) / g'(xₙ)", 24, BLUE, True)
-    y += 44
-    y = table(
-        d,
-        (40, y),
-        [90, 250, 250, 250, 230],
-        52,
+    write(d, r + 1, "g(a)·g''(a) > 0  →  x₀ = a = −1", 21, GREEN, True)
+    write(d, r + 2, "xₙ₊₁ = xₙ − g(xₙ)/g'(xₙ)", 21, bold=True)
+
+    r = table(
+        d, r + 4,
+        [90, 210, 210, 210, 200],
         ["n", "x", "g(x)", "g'(x)", "Δx"],
         [
             ["0", "−1,000000", "0,500000", "−4,500000", "+0,111111"],
             ["1", "−0,888889", "0,024691", "−4,055556", "+0,006088"],
             ["2", "−0,882801", "0,000074", "−4,031202", "+0,000018"],
         ],
-        fsize=20,
-        last=(255, 228, 180),
+        fsize=17,
     )
-    y += 22
-    T(d, (40, y), "|Δx| = 0,000018 < 0,001  →  стоп", 24)
-    y += 44
-    d.rounded_rectangle([40, y, 1200, y + 96], radius=14, fill=PAPER_G, outline=GREEN, width=4)
-    T(d, (60, y + 28), "Ответ:   ξ = −0,8828", 34, GREEN, True)
-    y += 116
+    write(d, r + 1, "|Δx| = 0,000018 ≤ 0,001  →  стоп", 21)
+    write(d, r + 2, "ξ = −0,8828", 26, GREEN, True)
     gpath.unlink(missing_ok=True)
-    return im.crop((0, 0, W, y + 16))
+    return im.crop((0, 0, W, (r + 4) * STEP))
 
 
 def main():
-    z1 = sheet_z1()
-    z2 = sheet_z2()
-    p1 = OUT / "pr2_zadanie1.png"
-    p2 = OUT / "pr2_zadanie2.png"
-    z1.save(p1, "PNG", optimize=True)
-    z2.save(p2, "PNG", optimize=True)
-    print(p1, z1.size)
-    print(p2, z2.size)
+    a = sheet_titul_z1a()
+    b = sheet_z1b()
+    c = sheet_z2()
+    files = [
+        (OUT / "pr2_zadanie1a.png", a),
+        (OUT / "pr2_zadanie1b.png", b),
+        (OUT / "pr2_zadanie2.png", c),
+    ]
+    # one long z1 for convenience
+    z1 = Image.new("RGB", (W, a.height + b.height), PAPER)
+    z1.paste(a, (0, 0))
+    z1.paste(b, (0, a.height))
+    files.append((OUT / "pr2_zadanie1.png", z1))
+    for p, im in files:
+        im.save(p, "PNG", optimize=True)
+        print(p, im.size)
 
 
 if __name__ == "__main__":
