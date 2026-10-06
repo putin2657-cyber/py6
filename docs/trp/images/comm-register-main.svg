@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1560" height="980" viewBox="0 0 1560 980">
+<defs><marker id="to-user" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M 0 0 L 10 5 L 0 10 Z" fill="#7E91A3"/></marker></defs>
+<style>text { font-family: Inter, "DejaVu Sans", "Liberation Sans", sans-serif; }</style>
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="780.0" y="34" text-anchor="middle" font-size="18" font-weight="700" fill="#1C2B39">Диаграмма коммуникации. Основной сценарий</text>
+<text x="780.0" y="56" text-anchor="middle" font-size="12" fill="#4E6272">ИС «Управление пользователями» · процесс «Регистрация» · номера сообщений совпадают с рис. 1</text>
+<line x1="168.0" y1="183.8" x2="300.0" y2="183.3" stroke="#7E91A3" stroke-width="1.35"/>
+<line x1="500.0" y1="183.0" x2="690.0" y2="183.0" stroke="#7E91A3" stroke-width="1.35"/>
+<line x1="766.2" y1="226.0" x2="518.8" y2="500.0" stroke="#7E91A3" stroke-width="1.35"/>
+<line x1="168.0" y1="241.9" x2="435.4" y2="500.0" stroke="#7E91A3" stroke-width="1.35"/>
+<line x1="360.0" y1="543.0" x2="248.0" y2="543.0" stroke="#7E91A3" stroke-width="1.35"/>
+<line x1="600.0" y1="543.0" x2="760.0" y2="543.0" stroke="#7E91A3" stroke-width="1.35"/>
+<line x1="990.0" y1="543.0" x2="1140.0" y2="543.0" stroke="#7E91A3" stroke-width="1.35"/>
+<line x1="480.0" y1="586.0" x2="480.0" y2="800.0" stroke="#7E91A3" stroke-width="1.35"/>
+<path d="M 360 843 H 22 V 190 H 48" fill="none" stroke="#7E91A3" stroke-width="1.35" marker-end="url(#to-user)"/>
+<path d="M 594 516 h 26 v 24 h -20" fill="none" stroke="#243140" stroke-width="1.2"/>
+<polygon points="592,540 602,536 602,544" fill="#243140"/>
+<circle cx="108.0" cy="148" r="12" fill="none" stroke="#1C3D5A" stroke-width="1.8"/>
+<line x1="108.0" y1="160" x2="108.0" y2="184" stroke="#1C3D5A" stroke-width="1.8"/>
+<line x1="90.0" y1="172" x2="126.0" y2="172" stroke="#1C3D5A" stroke-width="1.8"/>
+<line x1="108.0" y1="184" x2="94.0" y2="204" stroke="#1C3D5A" stroke-width="1.8"/>
+<line x1="108.0" y1="184" x2="122.0" y2="204" stroke="#1C3D5A" stroke-width="1.8"/>
+<text x="108.0" y="224" text-anchor="middle" font-size="14" font-weight="700" fill="#1C2B39">Пользователь</text>
+<rect x="300.0" y="140.0" width="200" height="86" rx="8" fill="#E7F0F8" stroke="#1C4E7A" stroke-width="1.6"/>
+<text x="400.0" y="167.0" text-anchor="middle" font-size="11" fill="#4E6272">«форма»</text>
+<text x="400.0" y="187.0" text-anchor="middle" font-size="14" font-weight="700" fill="#1C2B39">Главное меню</text>
+<text x="400.0" y="205.0" text-anchor="middle" font-size="11" fill="#4E6272">MenuW</text>
+<rect x="690.0" y="140.0" width="230" height="86" rx="8" fill="#E7F4EA" stroke="#1E6B3A" stroke-width="1.6"/>
+<text x="805.0" y="167.0" text-anchor="middle" font-size="11" fill="#4E6272">«управление»</text>
+<text x="805.0" y="187.0" text-anchor="middle" font-size="14" font-weight="700" fill="#1C2B39">Контроллер окон</text>
+<text x="805.0" y="205.0" text-anchor="middle" font-size="11" fill="#4E6272">Control</text>
+<rect x="48.0" y="500.0" width="200" height="86" rx="8" fill="#F3EEF8" stroke="#5C3D86" stroke-width="1.6"/>
+<text x="148.0" y="527.0" text-anchor="middle" font-size="11" fill="#4E6272">«модуль»</text>
+<text x="148.0" y="547.0" text-anchor="middle" font-size="14" font-weight="700" fill="#1C2B39">Валидатор</text>
+<text x="148.0" y="565.0" text-anchor="middle" font-size="11" fill="#4E6272">validators</text>
+<rect x="360.0" y="500.0" width="240" height="86" rx="8" fill="#E7F0F8" stroke="#1C4E7A" stroke-width="1.6"/>
+<text x="480.0" y="527.0" text-anchor="middle" font-size="11" fill="#4E6272">«форма»</text>
+<text x="480.0" y="547.0" text-anchor="middle" font-size="14" font-weight="700" fill="#1C2B39">Форма регистрации</text>
+<text x="480.0" y="565.0" text-anchor="middle" font-size="11" fill="#4E6272">WidgetReg</text>
+<rect x="760.0" y="500.0" width="230" height="86" rx="8" fill="#F3EEF8" stroke="#5C3D86" stroke-width="1.6"/>
+<text x="875.0" y="527.0" text-anchor="middle" font-size="11" fill="#4E6272">«модуль»</text>
+<text x="875.0" y="547.0" text-anchor="middle" font-size="14" font-weight="700" fill="#1C2B39">Подключение к БД</text>
+<text x="875.0" y="565.0" text-anchor="middle" font-size="11" fill="#4E6272">ConnectDB</text>
+<rect x="1140.0" y="497.0" width="200" height="92" fill="#E5F3EF" stroke="#1A6B58" stroke-width="1.5"/>
+<ellipse cx="1240.0" cy="497.0" rx="100.0" ry="9" fill="#E5F3EF" stroke="#1A6B58" stroke-width="1.5"/>
+<ellipse cx="1240.0" cy="589.0" rx="100.0" ry="9" fill="#E5F3EF" stroke="#1A6B58" stroke-width="1.5"/>
+<path d="M 1140.0 497.0 V 589.0" fill="none" stroke="#1A6B58" stroke-width="1.5"/>
+<path d="M 1340.0 497.0 V 589.0" fill="none" stroke="#1A6B58" stroke-width="1.5"/>
+<text x="1240.0" y="529.0" text-anchor="middle" font-size="11" fill="#4E6272">«хранилище»</text>
+<text x="1240.0" y="547.0" text-anchor="middle" font-size="14" font-weight="700" fill="#1C2B39">База данных</text>
+<text x="1240.0" y="565.0" text-anchor="middle" font-size="11" fill="#4E6272">uslugi.user</text>
+<rect x="360.0" y="800.0" width="240" height="86" rx="8" fill="#FBF3E6" stroke="#8A5A12" stroke-width="1.6"/>
+<text x="480.0" y="827.0" text-anchor="middle" font-size="11" fill="#4E6272">«форма»</text>
+<text x="480.0" y="847.0" text-anchor="middle" font-size="14" font-weight="700" fill="#1C2B39">Окно сообщения</text>
+<text x="480.0" y="865.0" text-anchor="middle" font-size="11" fill="#4E6272">QMessageBox</text>
+<rect x="188" y="78" width="177.67999999999998" height="26" rx="4" fill="#ffffff" stroke="#D5DEE6" stroke-width="1"/>
+<text x="195" y="95" font-size="12" fill="#1C2B39">1: «Зарегистрироваться»</text>
+<rect x="520" y="104" width="138.07999999999998" height="26" rx="4" fill="#ffffff" stroke="#D5DEE6" stroke-width="1"/>
+<text x="527" y="121" font-size="12" fill="#1C2B39">1.1: but_reg.clicked</text>
+<rect x="500" y="328" width="187.15999999999997" height="58" rx="4" fill="#ffffff" stroke="#D5DEE6" stroke-width="1"/>
+<text x="507" y="345" font-size="12" fill="#1C2B39">1.3: show(), activateWindow()</text>
+<text x="507" y="361" font-size="12" fill="#1C2B39">4.1: quit.clicked</text>
+<text x="507" y="377" font-size="12" fill="#1C2B39">4.2: hide()</text>
+<rect x="188" y="292" width="177.67999999999998" height="58" rx="4" fill="#ffffff" stroke="#D5DEE6" stroke-width="1"/>
+<text x="195" y="309" font-size="12" fill="#1C2B39">2: ввести логин и пароль</text>
+<text x="195" y="325" font-size="12" fill="#1C2B39">3: «Зарегистрироваться»</text>
+<text x="195" y="341" font-size="12" fill="#1C2B39">4: «Назад»</text>
+<rect x="430" y="248" width="172.27999999999997" height="42" rx="4" fill="#ffffff" stroke="#D5DEE6" stroke-width="1"/>
+<text x="437" y="265" font-size="12" fill="#1C2B39">1.2: hide() главного меню</text>
+<text x="437" y="281" font-size="12" fill="#1C2B39">4.3: show() главного меню</text>
+<rect x="48" y="612" width="196.03999999999996" height="74" rx="4" fill="#ffffff" stroke="#D5DEE6" stroke-width="1"/>
+<text x="55" y="629" font-size="12" fill="#1C2B39">3.1: validate_login(login)</text>
+<text x="55" y="645" font-size="12" fill="#1C2B39">3.2: (True, «»)</text>
+<text x="55" y="661" font-size="12" fill="#1C2B39">3.3: validate_password(parol)</text>
+<text x="55" y="677" font-size="12" fill="#1C2B39">3.4: (True, «»)</text>
+<rect x="660" y="648" width="162.91999999999996" height="106" rx="4" fill="#ffffff" stroke="#D5DEE6" stroke-width="1"/>
+<text x="667" y="665" font-size="12" fill="#1C2B39">3.5: ConnectDB()</text>
+<text x="667" y="681" font-size="12" fill="#1C2B39">3.8: SELECT login</text>
+<text x="667" y="697" font-size="12" fill="#1C2B39">3.11: fetchone() = None</text>
+<text x="667" y="713" font-size="12" fill="#1C2B39">3.12: INSERT INTO user</text>
+<text x="667" y="729" font-size="12" fill="#1C2B39">3.14: commit()</text>
+<text x="667" y="745" font-size="12" fill="#1C2B39">3.19: close()</text>
+<rect x="1020" y="352" width="199.99999999999997" height="90" rx="4" fill="#ffffff" stroke="#D5DEE6" stroke-width="1"/>
+<text x="1027" y="369" font-size="12" fill="#1C2B39">3.6: CONNECT к uslugi</text>
+<text x="1027" y="385" font-size="12" fill="#1C2B39">3.7: соединение установлено</text>
+<text x="1027" y="401" font-size="12" fill="#1C2B39">3.9 / 3.13: SELECT / INSERT</text>
+<text x="1027" y="417" font-size="12" fill="#1C2B39">3.15: COMMIT</text>
+<text x="1027" y="433" font-size="12" fill="#1C2B39">3.20: закрыть соединение</text>
+<rect x="640" y="812" width="248.35999999999996" height="42" rx="4" fill="#ffffff" stroke="#D5DEE6" stroke-width="1"/>
+<text x="647" y="829" font-size="12" fill="#1C2B39">3.16: «Вы зарегистрированы»</text>
+<text x="647" y="845" font-size="12" fill="#1C2B39">3.18: очистить поля логина и пароля</text>
+<rect x="40" y="400" width="191.83999999999995" height="26" rx="4" fill="#ffffff" stroke="#D5DEE6" stroke-width="1"/>
+<text x="47" y="417" font-size="12" fill="#1C2B39">3.17: показать уведомление</text>
+<rect x="620" y="456" width="151.87999999999997" height="26" rx="4" fill="#ffffff" stroke="#D5DEE6" stroke-width="1"/>
+<text x="627" y="473" font-size="12" fill="#1C2B39">1.4: фокус на «Логин»</text>
+<text x="780.0" y="964" text-anchor="middle" font-size="13" fill="#1C2B39">Рис. 3. Диаграмма коммуникации (кооперации) успешной регистрации</text>
+</svg>
