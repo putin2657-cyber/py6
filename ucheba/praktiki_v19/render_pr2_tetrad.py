@@ -86,21 +86,27 @@ def table(d, row, col_w, headers, rows, fsize=18, head=YELLOW):
 
 
 def graph_task2(path):
-    xs = np.linspace(-2.3, 2.5, 400)
+    xs = np.linspace(-2.3, 2.5, 500)
     fig, ax = plt.subplots(figsize=(5.6, 3.6), dpi=130)
     fig.patch.set_facecolor("#fcfcf4")
     ax.set_facecolor("#fffef8")
     ax.axhline(0, color="#222", lw=1.1)
     ax.axvline(0, color="#222", lw=1.0)
     ax.plot(xs, 2 * xs**2, color="#1c5aa8", lw=2.3, label="y = 2x²")
-    ax.plot(xs, 0.5 * xs + 2, color="#c42828", lw=2.3, label="y = 0,5x+2")
-    ax.plot([-0.8828], [1.5586], "o", color="#167a3a", ms=8)
-    ax.plot([1.1328], [2.5664], "o", color="#777", ms=6)
-    ax.annotate("ξ", xy=(-0.8828, 1.5586), xytext=(-2.05, 4.8),
-                fontproperties=fpb, fontsize=12, color="#167a3a",
-                arrowprops=dict(arrowstyle="->", color="#167a3a"))
+    ax.plot(xs, 0.5**xs + 2, color="#c42828", lw=2.3, label="y = 0,5ˣ + 2")
+    ax.plot([1.1098], [2.4633], "o", color="#167a3a", ms=8)
+    ax.plot([-1.5793], [4.988], "o", color="#777", ms=6)
+    ax.annotate(
+        "ξ",
+        xy=(1.1098, 2.4633),
+        xytext=(1.55, 6.2),
+        fontproperties=fpb,
+        fontsize=12,
+        color="#167a3a",
+        arrowprops=dict(arrowstyle="->", color="#167a3a"),
+    )
     ax.set_xlim(-2.3, 2.5)
-    ax.set_ylim(-0.3, 8)
+    ax.set_ylim(-0.2, 9)
     ax.grid(True, ls="--", alpha=0.35)
     ax.legend(prop=fp, loc="upper right", fontsize=9)
     ax.set_title("касательные", fontproperties=fp, fontsize=11)
@@ -203,48 +209,53 @@ def sheet_z2():
     gim = Image.open(gpath).convert("RGB")
     gim = gim.resize((480, int(480 * gim.height / gim.width)), Image.Resampling.LANCZOS)
 
-    im, d = notebook(40)
+    im, d = notebook(48)
     write(d, 1, "Задание 2:", 24, BLUE, True)
     write(d, 2, "Отделить графически корни. Уточнить наименьший по модулю", 20)
     write(d, 3, "корень уравнения методом касательных с точностью ε.", 20)
-    write(d, 4, "2x² = 0,5x + 2          ε = 0,001", 24, bold=True)
+    write(d, 4, "2x² = 0,5ˣ + 2          ε = 0,001", 24, bold=True)
+    write(d, 5, "это  0,5 в степени x,   не  0,5·x", 20, BLUE)
 
-    write(d, 6, "g(x) = 2x² − 0,5x − 2 = 0", 22, bold=True)
-    write(d, 7, "y₁ = 2x²          y₂ = 0,5x + 2", 22)
-    write(d, 8, "g'(x) = 4x − 0,5          g''(x) = 4", 22)
+    write(d, 7, "g(x) = 2x² − 0,5ˣ − 2 = 0", 22, bold=True)
+    write(d, 8, "y₁ = 2x²          y₂ = 0,5ˣ + 2", 22)
+    write(d, 9, "ln 0,5 = −ln 2 = −0,693147", 20)
+    write(d, 10, "g'(x) = 4x − 0,5ˣ·ln 0,5  =  4x + 0,693147·0,5ˣ", 20)
+    write(d, 11, "g''(x) = 4 − (ln 2)²·0,5ˣ  =  4 − 0,480453·0,5ˣ", 20)
 
-    write(d, 10, "точки для графика", 20, BLUE, True)
+    write(d, 13, "точки для графика", 20, BLUE, True)
     table(
-        d, 11,
-        [120, 140, 160, 140],
-        ["x", "2x²", "0,5x+2", "g(x)"],
+        d, 14,
+        [110, 130, 160, 140],
+        ["x", "2x²", "0,5ˣ+2", "g(x)"],
         [
-            ["−2", "8", "1", "7"],
-            ["−1", "2", "1,5", "0,5"],
-            ["0", "0", "2", "−2"],
+            ["−2", "8", "6", "+2"],
+            ["−1,5", "4,5", "4,828", "−0,328"],
+            ["−1", "2", "4", "−2"],
+            ["0", "0", "3", "−3"],
             ["1", "2", "2,5", "−0,5"],
-            ["2", "8", "3", "5"],
+            ["1,5", "4,5", "2,354", "+2,146"],
+            ["2", "8", "2,25", "+5,75"],
+        ],
+        fsize=16,
+    )
+    im.paste(gim, (680, 12 * STEP))
+    write(d, 23, "ξ ∈ [−2; −1,5]   и   ξ ∈ [1; 1,5]", 21)
+    write(d, 24, "меньший по | |  на  [1; 1,5]", 22, GREEN, True)
+
+    write(d, 26, "таблица на концах [1; 1,5]", 21, BLUE, True)
+    r = table(
+        d, 27,
+        [180, 220, 220],
+        ["", "a = 1", "b = 1,5"],
+        [
+            ["g", "−0,500000", "+2,146447"],
+            ["g'", "+4,346574", "+6,245065"],
+            ["g''", "+3,759773", "+3,830134"],
+            ["g · g''", "−  < 0", "+  > 0"],
         ],
         fsize=17,
     )
-    im.paste(gim, (670, 9 * STEP))
-    write(d, 18, "ξ ∈ [−1; 0]   и   ξ ∈ [1; 2]", 21)
-    write(d, 19, "меньший по | |  на  [−1; 0]", 22, GREEN, True)
-
-    write(d, 21, "таблица на концах [−1; 0]", 21, BLUE, True)
-    r = table(
-        d, 22,
-        [180, 220, 220],
-        ["", "a = −1", "b = 0"],
-        [
-            ["g", "+0,5", "−2"],
-            ["g'", "−4,5", "−0,5"],
-            ["g''", "+4", "+4"],
-            ["g · g''", "+  > 0", "−  < 0"],
-        ],
-        fsize=18,
-    )
-    write(d, r + 1, "g(a)·g''(a) > 0  →  x₀ = a = −1", 21, GREEN, True)
+    write(d, r + 1, "g(b)·g''(b) > 0  →  x₀ = b = 1,5", 21, GREEN, True)
     write(d, r + 2, "xₙ₊₁ = xₙ − g(xₙ)/g'(xₙ)", 21, bold=True)
 
     r = table(
@@ -252,14 +263,14 @@ def sheet_z2():
         [90, 210, 210, 210, 200],
         ["n", "x", "g(x)", "g'(x)", "Δx"],
         [
-            ["0", "−1,000000", "0,500000", "−4,500000", "+0,111111"],
-            ["1", "−0,888889", "0,024691", "−4,055556", "+0,006088"],
-            ["2", "−0,882801", "0,000074", "−4,031202", "+0,000018"],
+            ["0", "1,500000", "2,146447", "6,245065", "−0,343703"],
+            ["1", "1,156297", "0,225383", "4,936178", "−0,045660"],
+            ["2", "1,110638", "0,003942", "4,763540", "−0,000828"],
         ],
         fsize=17,
     )
-    write(d, r + 1, "|Δx| = 0,000018 ≤ 0,001  →  стоп", 21)
-    write(d, r + 2, "ξ = −0,8828", 26, GREEN, True)
+    write(d, r + 1, "|Δx| = 0,000828 ≤ 0,001  →  стоп", 21)
+    write(d, r + 2, "ξ = 1,1098", 26, GREEN, True)
     gpath.unlink(missing_ok=True)
     return im.crop((0, 0, W, (r + 4) * STEP))
 
