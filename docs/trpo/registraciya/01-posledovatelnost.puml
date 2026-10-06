@@ -1,0 +1,141 @@
+@startuml
+skinparam backgroundColor #FFFFFF
+skinparam shadowing false
+skinparam dpi 140
+skinparam defaultFontName DejaVu Sans
+skinparam defaultFontSize 12
+skinparam roundcorner 6
+skinparam sequence {
+  ArrowColor #1F4E79
+  ArrowThickness 1.2
+  LifeLineBorderColor #8AA4C2
+  LifeLineBackgroundColor #F7FAFC
+  ParticipantBorderColor #1F4E79
+  ParticipantBackgroundColor #E8F1FA
+  ParticipantFontColor #16324F
+  ActorBackgroundColor #FFF4E5
+  ActorBorderColor #C47B17
+  ActorFontColor #16324F
+  GroupBorderColor #7A8CA3
+  GroupBackgroundColor #F4F7FB
+  DividerBackgroundColor #EEF3F8
+  DividerBorderColor #1F4E79
+  BoxPadding 8
+}
+skinparam note {
+  BackgroundColor #FFFBEA
+  BorderColor #C4A35A
+  FontColor #16324F
+}
+
+title Диаграмма последовательности\nПроцесс «Регистрация в системе»
+
+actor "Пользователь" as User
+boundary "Форма\nглавного меню\n<<MenuW>>" as Menu
+control "Контроллер окон\n<<Control>>" as Ctrl
+boundary "Форма\nрегистрации\n<<WidgetReg>>" as Reg
+control "Модуль\nвалидации\n<<validators>>" as Val
+entity "Подключение к БД\n<<ConnectDB>>" as DB
+database "СУБД MySQL\nтаблица user" as SQL
+boundary "Диалог\nсообщения\n<<QMessageBox>>" as Msg
+
+note over User, Msg
+  Объекты диаграммы — формы и другие части ИС «Управление пользователями».
+  Нумерация 1–34 — основной (успешный) сценарий.
+  Ветви A1–A6 — альтернативные потоки.
+end note
+
+== 1. Открытие формы регистрации ==
+
+User -> Menu : 1: нажать «Зарегистрироваться»
+Menu -> Ctrl : 2: but_reg.clicked() → open_reg()
+Ctrl -> Menu : 3: hide()
+Ctrl -> Reg : 4: show(), raise_(), activateWindow()
+Reg -> Reg : 5: showEvent() — фокус на поле «Логин»
+
+== 2. Ввод данных и проверка ==
+
+User -> Reg : 6: ввести логин и пароль
+User -> Reg : 7: нажать «Зарегистрироваться»
+Reg -> Reg : 8: прочитать поля и убрать крайние пробелы
+
+alt A1: логин или пароль пустые
+  Reg -> Msg : A1: warning(«Заполните все поля»)
+  Msg --> User : показать предупреждение
+else поля заполнены
+  Reg -> Val : 9: validate_login(login)
+  Val --> Reg : 10: (ok, сообщение)
+
+  alt A2: логин не соответствует правилам
+    Reg -> Msg : A2: warning(текст ошибки логина)
+    Msg --> User : показать предупреждение
+  else логин корректен
+    Reg -> Val : 11: validate_password(parol)
+    Val --> Reg : 12: (ok, сообщение)
+
+    alt A3: пароль не соответствует правилам
+      Reg -> Msg : A3: warning(текст ошибки пароля)
+      Msg --> User : показать предупреждение
+    else пароль корректен
+
+      == 3. Запись пользователя ==
+
+      Reg -> DB : 13: ConnectDB()
+      DB -> SQL : 14: connection() — база uslugi
+
+      alt A4: соединение не установлено
+        SQL --> DB : ошибка подключения
+        DB --> Reg : con = None
+        Reg -> Msg : A4: critical(«Не удалось подключиться к базе данных»)
+        Msg --> User : показать ошибку
+      else соединение установлено
+        SQL --> DB : 15: соединение установлено
+        DB --> Reg : 16: con, cur
+
+        Reg -> DB : 17: SELECT login FROM user WHERE login = ?
+        DB -> SQL : 18: выполнить запрос
+        SQL --> DB : 19: строка или пустой результат
+        DB --> Reg : 20: exists
+
+        alt A5: такой логин уже есть
+          Reg -> Msg : A5: warning(«Такой пользователь уже есть»)
+          Msg --> User : показать предупреждение
+        else логин свободен
+          Reg -> DB : 21: INSERT INTO user (login, parol) VALUES (?, ?)
+          DB -> SQL : 22: выполнить вставку
+
+          alt A6: ошибка СУБД
+            SQL --> DB : исключение
+            DB --> Reg : Exception
+            Reg -> DB : A6.1: rollback()
+            DB -> SQL : ROLLBACK
+            Reg -> Msg : A6.2: critical(«Ошибка регистрации»)
+            Msg --> User : показать ошибку
+          else запись выполнена
+            SQL --> DB : 23: строка добавлена
+            DB --> Reg : ok
+            Reg -> DB : 24: commit()
+            DB -> SQL : 25: COMMIT
+            Reg -> Msg : 26: information(«Вы зарегистрированы»)
+            Msg --> User : 27: показать уведомление
+            Reg -> Reg : 28: очистить поля логина и пароля
+          end
+        end
+
+        Reg -> DB : 29: close()
+        DB -> SQL : 30: закрыть соединение
+      end
+    end
+  end
+end
+
+== 4. Возврат в главное меню ==
+
+opt пользователь нажал «Назад»
+  User -> Reg : 31: нажать «Назад»
+  Reg -> Ctrl : 32: quit.clicked() → open_menu()
+  Ctrl -> Reg : 33: hide()
+  Ctrl -> Menu : 34: show(), raise_(), activateWindow()
+end
+
+@enduml
