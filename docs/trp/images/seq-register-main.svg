@@ -1,0 +1,147 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1480" height="1414" viewBox="0 0 1480 1414">
+
+<defs>
+  <marker id="sync" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+    <path d="M 0 0 L 10 5 L 0 10 Z" fill="#243140"/>
+  </marker>
+  <marker id="reply" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+    <path d="M 1 1 L 9 5 L 1 9" fill="none" stroke="#4E6272" stroke-width="1.4"/>
+  </marker>
+</defs>
+<style>
+  text { font-family: Inter, "DejaVu Sans", "Liberation Sans", sans-serif; }
+</style>
+<rect width="100%" height="100%" fill="#ffffff"/>
+
+<text x="740.0" y="28" text-anchor="middle" font-size="18" font-weight="700" fill="#1C2B39">Диаграмма последовательности. Основной сценарий</text>
+<text x="740.0" y="48" text-anchor="middle" font-size="12" fill="#4E6272">ИС «Управление пользователями» · процесс «Регистрация»</text>
+<line x1="117.0" y1="140" x2="117.0" y2="1294" stroke="#B7C3CE" stroke-width="1.2" stroke-dasharray="4 4"/>
+<line x1="295.0" y1="140" x2="295.0" y2="1294" stroke="#B7C3CE" stroke-width="1.2" stroke-dasharray="4 4"/>
+<line x1="473.0" y1="140" x2="473.0" y2="1294" stroke="#B7C3CE" stroke-width="1.2" stroke-dasharray="4 4"/>
+<line x1="651.0" y1="140" x2="651.0" y2="1294" stroke="#B7C3CE" stroke-width="1.2" stroke-dasharray="4 4"/>
+<line x1="829.0" y1="140" x2="829.0" y2="1294" stroke="#B7C3CE" stroke-width="1.2" stroke-dasharray="4 4"/>
+<line x1="1007.0" y1="140" x2="1007.0" y2="1294" stroke="#B7C3CE" stroke-width="1.2" stroke-dasharray="4 4"/>
+<line x1="1185.0" y1="140" x2="1185.0" y2="1294" stroke="#B7C3CE" stroke-width="1.2" stroke-dasharray="4 4"/>
+<line x1="1363.0" y1="140" x2="1363.0" y2="1294" stroke="#B7C3CE" stroke-width="1.2" stroke-dasharray="4 4"/>
+<rect x="290.0" y="252" width="10" height="18" rx="1" fill="#1C3D5A" fill-opacity="0.9"/>
+<rect x="646.0" y="284" width="10" height="18" rx="1" fill="#1C3D5A" fill-opacity="0.9"/>
+<rect x="824.0" y="458" width="10" height="42" rx="1" fill="#1C3D5A" fill-opacity="0.9"/>
+<rect x="824.0" y="522" width="10" height="42" rx="1" fill="#1C3D5A" fill-opacity="0.9"/>
+<rect x="1180.0" y="618" width="10" height="42" rx="1" fill="#1C3D5A" fill-opacity="0.9"/>
+<rect x="1180.0" y="714" width="10" height="42" rx="1" fill="#1C3D5A" fill-opacity="0.9"/>
+<rect x="1180.0" y="906" width="10" height="16" rx="1" fill="#1C3D5A" fill-opacity="0.9"/>
+<rect x="1358.0" y="938" width="10" height="42" rx="1" fill="#1C3D5A" fill-opacity="0.9"/>
+<rect x="1002.0" y="586" width="10" height="508" rx="1" fill="#1C3D5A" fill-opacity="0.9"/>
+<rect x="646.0" y="426" width="10" height="636" rx="1" fill="#1C3D5A" fill-opacity="0.9"/>
+<text x="36" y="172" font-size="12.5" font-weight="650" fill="#1F4E79">Открытие формы регистрации</text>
+<rect x="91.4375" y="178" width="229.125" height="16" fill="#ffffff" fill-opacity="0.92"/><line x1="123.0" y1="196" x2="289.0" y2="196" stroke="#243140" stroke-width="1.25" marker-end="url(#sync)"/><text x="206.0" y="190" text-anchor="middle" font-size="12.5" fill="#1C2B39">1: нажать «Зарегистрироваться»</text>
+<rect x="315.375" y="210" width="137.25" height="16" fill="#ffffff" fill-opacity="0.92"/><line x1="301.0" y1="228" x2="467.0" y2="228" stroke="#243140" stroke-width="1.25" marker-end="url(#sync)"/><text x="384.0" y="222" text-anchor="middle" font-size="12.5" fill="#1C2B39">1.1: but_reg.clicked</text>
+<rect x="348.1875" y="242" width="71.625" height="16" fill="#ffffff" fill-opacity="0.92"/><line x1="467.0" y1="260" x2="301.0" y2="260" stroke="#243140" stroke-width="1.25" marker-end="url(#sync)"/><text x="384.0" y="254" text-anchor="middle" font-size="12.5" fill="#1C2B39">1.2: hide()</text>
+<rect x="467.8125" y="274" width="188.375" height="16" fill="#ffffff" fill-opacity="0.92"/><line x1="479.0" y1="292" x2="645.0" y2="292" stroke="#243140" stroke-width="1.25" marker-end="url(#sync)"/><text x="562.0" y="286" text-anchor="middle" font-size="12.5" fill="#1C2B39">1.3: show(), activateWindow()</text>
+<rect x="724.0" y="326" width="186.75" height="16" fill="#ffffff"/><path d="M 657.0 324 H 721.0 V 344 H 659.0" fill="none" stroke="#243140" stroke-width="1.25" marker-end="url(#sync)"/><text x="727.0" y="338" font-size="12.5" fill="#1C2B39">1.4: фокус на поле «Логин»</text>
+<text x="36" y="376" font-size="12.5" font-weight="650" fill="#1F4E79">Проверка данных и запись учётной записи</text>
+<rect x="296.3125" y="382" width="175.375" height="16" fill="#ffffff" fill-opacity="0.92"/><line x1="123.0" y1="400" x2="645.0" y2="400" stroke="#243140" stroke-width="1.25" marker-end="url(#sync)"/><text x="384.0" y="394" text-anchor="middle" font-size="12.5" fill="#1C2B39">2: ввести логин и пароль</text>
+<rect x="269.4375" y="414" width="229.125" height="16" fill="#ffffff" fill-opacity="0.92"/><line x1="123.0" y1="432" x2="645.0" y2="432" stroke="#243140" stroke-width="1.25" marker-end="url(#sync)"/><text x="384.0" y="426" text-anchor="middle" font-size="12.5" fill="#1C2B39">3: нажать «Зарегистрироваться»</text>
+<rect x="651.6875" y="446" width="176.625" height="16" fill="#ffffff" fill-opacity="0.92"/><line x1="657.0" y1="464" x2="823.0" y2="464" stroke="#243140" stroke-width="1.25" marker-end="url(#sync)"/><text x="740.0" y="458" text-anchor="middle" font-size="12.5" fill="#1C2B39">3.1: validate_login(login)</text>
+<rect x="691.4375" y="478" width="97.125" height="16" fill="#ffffff" fill-opacity="0.92"/><line x1="823.0" y1="496" x2="657.0" y2="496" stroke="#4E6272" stroke-width="1.25" stroke-dasharray="5 3.5" marker-end="url(#reply)"/><text x="740.0" y="490" text-anchor="middle" font-size="12.5" fill="#1C2B39">3.2: (True, «»)</text>
+<rect x="641.1875" y="510" width="197.625" height="16" fill="#ffffff" fill-opacity="0.92"/><line x1="657.0" y1="528" x2="823.0" y2="528" stroke="#243140" stroke-width="1.25" marker-end="url(#sync)"/><text x="740.0" y="522" text-anchor="middle" font-size="12.5" fill="#1C2B39">3.3: validate_password(parol)</text>
+<rect x="691.4375" y="542" width="97.125" height="16" fill="#ffffff" fill-opacity="0.92"/><line x1="823.0" y1="560" x2="657.0" y2="560" stroke="#4E6272" stroke-width="1.25" stroke-dasharray="5 3.5" marker-end="url(#reply)"/><text x="740.0" y="554" text-anchor="middle" font-size="12.5" fill="#1C2B39">3.4: (True, «»)</text>
+<rect x="773.4375" y="574" width="111.125" height="16" fill="#ffffff" fill-opacity="0.92"/><line x1="657.0" y1="592" x2="1001.0" y2="592" stroke="#243140" stroke-width="1.25" marker-end="url(#sync)"/><text x="829.0" y="586" text-anchor="middle" font-size="12.5" fill="#1C2B39">3.5: ConnectDB()</text>
+<rect x="1019.8125" y="606" width="152.375" height="16" fill="#ffffff" fill-opacity="0.92"/><line x1="1013.0" y1="624" x2="1179.0" y2="624" stroke="#243140" stroke-width="1.25" marker-end="url(#sync)"/><text x="1096.0" y="618" text-anchor="middle" font-size="12.5" fill="#1C2B39">3.6: CONNECT к uslugi</text>
+<rect x="995.125" y="638" width="201.75" height="16" fill="#ffffff" fill-opacity="0.92"/><line x1="1179.0" y1="656" x2="1013.0" y2="656" stroke="#4E6272" stroke-width="1.25" stroke-dasharray="5 3.5" marker-end="url(#reply)"/><text x="1096.0" y="650" text-anchor="middle" font-size="12.5" fill="#1C2B39">3.7: соединение установлено</text>
+<rect x="684.25" y="670" width="289.5" height="16" fill="#ffffff" fill-opacity="0.92"/><line x1="657.0" y1="688" x2="1001.0" y2="688" stroke="#243140" stroke-width="1.25" marker-end="url(#sync)"/><text x="829.0" y="682" text-anchor="middle" font-size="12.5" fill="#1C2B39">3.8: execute(SELECT login WHERE login=%s)</text>
+<rect x="1053.0625" y="702" width="85.875" height="16" fill="#ffffff" fill-opacity="0.92"/><line x1="1013.0" y1="720" x2="1179.0" y2="720" stroke="#243140" stroke-width="1.25" marker-end="url(#sync)"/><text x="1096.0" y="714" text-anchor="middle" font-size="12.5" fill="#1C2B39">3.9: SELECT</text>
+<rect x="1042.0" y="734" width="108.0" height="16" fill="#ffffff" fill-opacity="0.92"/><line x1="1179.0" y1="752" x2="1013.0" y2="752" stroke="#4E6272" stroke-width="1.25" stroke-dasharray="5 3.5" marker-end="url(#reply)"/><text x="1096.0" y="746" text-anchor="middle" font-size="12.5" fill="#1C2B39">3.10: строк нет</text>
+<rect x="753.3125" y="766" width="151.375" height="16" fill="#ffffff" fill-opacity="0.92"/><line x1="1001.0" y1="784" x2="657.0" y2="784" stroke="#4E6272" stroke-width="1.25" stroke-dasharray="5 3.5" marker-end="url(#reply)"/><text x="829.0" y="778" text-anchor="middle" font-size="12.5" fill="#1C2B39">3.11: fetchone() = None</text>
+<rect x="712.375" y="798" width="233.25" height="16" fill="#ffffff" fill-opacity="0.92"/><line x1="657.0" y1="816" x2="1001.0" y2="816" stroke="#243140" stroke-width="1.25" marker-end="url(#sync)"/><text x="829.0" y="810" text-anchor="middle" font-size="12.5" fill="#1C2B39">3.12: execute(INSERT login, parol)</text>
+<rect x="1014.4375" y="830" width="163.125" height="16" fill="#ffffff" fill-opacity="0.92"/><line x1="1013.0" y1="848" x2="1179.0" y2="848" stroke="#243140" stroke-width="1.25" marker-end="url(#sync)"/><text x="1096.0" y="842" text-anchor="middle" font-size="12.5" fill="#1C2B39">3.13: INSERT INTO user</text>
+<rect x="782.6875" y="862" width="92.625" height="16" fill="#ffffff" fill-opacity="0.92"/><line x1="657.0" y1="880" x2="1001.0" y2="880" stroke="#243140" stroke-width="1.25" marker-end="url(#sync)"/><text x="829.0" y="874" text-anchor="middle" font-size="12.5" fill="#1C2B39">3.14: commit()</text>
+<rect x="1049.5625" y="894" width="92.875" height="16" fill="#ffffff" fill-opacity="0.92"/><line x1="1013.0" y1="912" x2="1179.0" y2="912" stroke="#243140" stroke-width="1.25" marker-end="url(#sync)"/><text x="1096.0" y="906" text-anchor="middle" font-size="12.5" fill="#1C2B39">3.15: COMMIT</text>
+<rect x="865.9375" y="926" width="282.125" height="16" fill="#ffffff" fill-opacity="0.92"/><line x1="657.0" y1="944" x2="1357.0" y2="944" stroke="#243140" stroke-width="1.25" marker-end="url(#sync)"/><text x="1007.0" y="938" text-anchor="middle" font-size="12.5" fill="#1C2B39">3.16: information «Вы зарегистрированы»</text>
+<rect x="643.375" y="958" width="193.25" height="16" fill="#ffffff" fill-opacity="0.92"/><line x1="1357.0" y1="976" x2="123.0" y2="976" stroke="#4E6272" stroke-width="1.25" stroke-dasharray="5 3.5" marker-end="url(#reply)"/><text x="740.0" y="970" text-anchor="middle" font-size="12.5" fill="#1C2B39">3.17: показать уведомление</text>
+<rect x="724.0" y="1010" width="252.125" height="16" fill="#ffffff"/><path d="M 657.0 1008 H 721.0 V 1028 H 659.0" fill="none" stroke="#243140" stroke-width="1.25" marker-end="url(#sync)"/><text x="727.0" y="1022" font-size="12.5" fill="#1C2B39">3.18: очистить поля логина и пароля</text>
+<rect x="786.1875" y="1036" width="85.625" height="16" fill="#ffffff" fill-opacity="0.92"/><line x1="657.0" y1="1054" x2="1001.0" y2="1054" stroke="#243140" stroke-width="1.25" marker-end="url(#sync)"/><text x="829.0" y="1048" text-anchor="middle" font-size="12.5" fill="#1C2B39">3.19: close()</text>
+<rect x="1007.125" y="1068" width="177.75" height="16" fill="#ffffff" fill-opacity="0.92"/><line x1="1013.0" y1="1086" x2="1179.0" y2="1086" stroke="#243140" stroke-width="1.25" marker-end="url(#sync)"/><text x="1096.0" y="1080" text-anchor="middle" font-size="12.5" fill="#1C2B39">3.20: закрыть соединение</text>
+<text x="36" y="1124" font-size="12.5" font-weight="650" fill="#1F4E79">Возврат в главное меню</text>
+<rect x="319.8125" y="1130" width="128.375" height="16" fill="#ffffff" fill-opacity="0.92"/><line x1="123.0" y1="1148" x2="645.0" y2="1148" stroke="#243140" stroke-width="1.25" marker-end="url(#sync)"/><text x="384.0" y="1142" text-anchor="middle" font-size="12.5" fill="#1C2B39">4: нажать «Назад»</text>
+<rect x="503.875" y="1162" width="116.25" height="16" fill="#ffffff" fill-opacity="0.92"/><line x1="645.0" y1="1180" x2="479.0" y2="1180" stroke="#243140" stroke-width="1.25" marker-end="url(#sync)"/><text x="562.0" y="1174" text-anchor="middle" font-size="12.5" fill="#1C2B39">4.1: quit.clicked</text>
+<rect x="526.1875" y="1194" width="71.625" height="16" fill="#ffffff" fill-opacity="0.92"/><line x1="479.0" y1="1212" x2="645.0" y2="1212" stroke="#243140" stroke-width="1.25" marker-end="url(#sync)"/><text x="562.0" y="1206" text-anchor="middle" font-size="12.5" fill="#1C2B39">4.2: hide()</text>
+<rect x="348.1875" y="1226" width="71.625" height="16" fill="#ffffff" fill-opacity="0.92"/><line x1="467.0" y1="1244" x2="301.0" y2="1244" stroke="#243140" stroke-width="1.25" marker-end="url(#sync)"/><text x="384.0" y="1238" text-anchor="middle" font-size="12.5" fill="#1C2B39">4.3: show()</text>
+<circle cx="117.0" cy="80" r="11" fill="none" stroke="#1C3D5A" stroke-width="1.8"/>
+<line x1="117.0" y1="91" x2="117.0" y2="112" stroke="#1C3D5A" stroke-width="1.8"/>
+<line x1="101.0" y1="100" x2="133.0" y2="100" stroke="#1C3D5A" stroke-width="1.8"/>
+<line x1="117.0" y1="112" x2="103.0" y2="124" stroke="#1C3D5A" stroke-width="1.8"/>
+<line x1="117.0" y1="112" x2="131.0" y2="124" stroke="#1C3D5A" stroke-width="1.8"/>
+<text x="117.0" y="138" text-anchor="middle" font-size="13" font-weight="650" fill="#1C2B39">Пользователь</text>
+<circle cx="117.0" cy="1310" r="11" fill="none" stroke="#1C3D5A" stroke-width="1.8"/>
+<line x1="117.0" y1="1321" x2="117.0" y2="1342" stroke="#1C3D5A" stroke-width="1.8"/>
+<line x1="101.0" y1="1330" x2="133.0" y2="1330" stroke="#1C3D5A" stroke-width="1.8"/>
+<line x1="117.0" y1="1342" x2="103.0" y2="1354" stroke="#1C3D5A" stroke-width="1.8"/>
+<line x1="117.0" y1="1342" x2="131.0" y2="1354" stroke="#1C3D5A" stroke-width="1.8"/>
+<text x="117.0" y="1368" text-anchor="middle" font-size="13" font-weight="650" fill="#1C2B39">Пользователь</text>
+<rect x="216.0" y="64" width="158" height="76" rx="8" fill="#E7F0F8" stroke="#1C4E7A" stroke-width="1.5"/>
+<text x="295.0" y="84" text-anchor="middle" font-size="11" fill="#4E6272">«форма»</text>
+<text x="295.0" y="104" text-anchor="middle" font-size="13.5" font-weight="650" fill="#1C2B39">Главное меню</text>
+<text x="295.0" y="122" text-anchor="middle" font-size="11" fill="#4E6272">MenuW</text>
+<rect x="216.0" y="1294" width="158" height="76" rx="8" fill="#E7F0F8" stroke="#1C4E7A" stroke-width="1.5"/>
+<text x="295.0" y="1314" text-anchor="middle" font-size="11" fill="#4E6272">«форма»</text>
+<text x="295.0" y="1334" text-anchor="middle" font-size="13.5" font-weight="650" fill="#1C2B39">Главное меню</text>
+<text x="295.0" y="1352" text-anchor="middle" font-size="11" fill="#4E6272">MenuW</text>
+<rect x="394.0" y="64" width="158" height="76" rx="8" fill="#E7F4EA" stroke="#1E6B3A" stroke-width="1.5"/>
+<text x="473.0" y="84" text-anchor="middle" font-size="11" fill="#4E6272">«управление»</text>
+<text x="473.0" y="104" text-anchor="middle" font-size="13.5" font-weight="650" fill="#1C2B39">Контроллер окон</text>
+<text x="473.0" y="122" text-anchor="middle" font-size="11" fill="#4E6272">Control</text>
+<rect x="394.0" y="1294" width="158" height="76" rx="8" fill="#E7F4EA" stroke="#1E6B3A" stroke-width="1.5"/>
+<text x="473.0" y="1314" text-anchor="middle" font-size="11" fill="#4E6272">«управление»</text>
+<text x="473.0" y="1334" text-anchor="middle" font-size="13.5" font-weight="650" fill="#1C2B39">Контроллер окон</text>
+<text x="473.0" y="1352" text-anchor="middle" font-size="11" fill="#4E6272">Control</text>
+<rect x="572.0" y="64" width="158" height="76" rx="8" fill="#E7F0F8" stroke="#1C4E7A" stroke-width="1.5"/>
+<text x="651.0" y="84" text-anchor="middle" font-size="11" fill="#4E6272">«форма»</text>
+<text x="651.0" y="104" text-anchor="middle" font-size="13.5" font-weight="650" fill="#1C2B39">Форма регистрации</text>
+<text x="651.0" y="122" text-anchor="middle" font-size="11" fill="#4E6272">WidgetReg</text>
+<rect x="572.0" y="1294" width="158" height="76" rx="8" fill="#E7F0F8" stroke="#1C4E7A" stroke-width="1.5"/>
+<text x="651.0" y="1314" text-anchor="middle" font-size="11" fill="#4E6272">«форма»</text>
+<text x="651.0" y="1334" text-anchor="middle" font-size="13.5" font-weight="650" fill="#1C2B39">Форма регистрации</text>
+<text x="651.0" y="1352" text-anchor="middle" font-size="11" fill="#4E6272">WidgetReg</text>
+<rect x="750.0" y="64" width="158" height="76" rx="8" fill="#F3EEF8" stroke="#5C3D86" stroke-width="1.5"/>
+<text x="829.0" y="84" text-anchor="middle" font-size="11" fill="#4E6272">«модуль»</text>
+<text x="829.0" y="104" text-anchor="middle" font-size="13.5" font-weight="650" fill="#1C2B39">Валидатор</text>
+<text x="829.0" y="122" text-anchor="middle" font-size="11" fill="#4E6272">validators</text>
+<rect x="750.0" y="1294" width="158" height="76" rx="8" fill="#F3EEF8" stroke="#5C3D86" stroke-width="1.5"/>
+<text x="829.0" y="1314" text-anchor="middle" font-size="11" fill="#4E6272">«модуль»</text>
+<text x="829.0" y="1334" text-anchor="middle" font-size="13.5" font-weight="650" fill="#1C2B39">Валидатор</text>
+<text x="829.0" y="1352" text-anchor="middle" font-size="11" fill="#4E6272">validators</text>
+<rect x="928.0" y="64" width="158" height="76" rx="8" fill="#F3EEF8" stroke="#5C3D86" stroke-width="1.5"/>
+<text x="1007.0" y="84" text-anchor="middle" font-size="11" fill="#4E6272">«модуль»</text>
+<text x="1007.0" y="104" text-anchor="middle" font-size="13.5" font-weight="650" fill="#1C2B39">Подключение к БД</text>
+<text x="1007.0" y="122" text-anchor="middle" font-size="11" fill="#4E6272">ConnectDB</text>
+<rect x="928.0" y="1294" width="158" height="76" rx="8" fill="#F3EEF8" stroke="#5C3D86" stroke-width="1.5"/>
+<text x="1007.0" y="1314" text-anchor="middle" font-size="11" fill="#4E6272">«модуль»</text>
+<text x="1007.0" y="1334" text-anchor="middle" font-size="13.5" font-weight="650" fill="#1C2B39">Подключение к БД</text>
+<text x="1007.0" y="1352" text-anchor="middle" font-size="11" fill="#4E6272">ConnectDB</text>
+<rect x="1106.0" y="72" width="158" height="60" fill="#E5F3EF" stroke="#1A6B58" stroke-width="1.4"/>
+<ellipse cx="1185.0" cy="72" rx="79.0" ry="8" fill="#E5F3EF" stroke="#1A6B58" stroke-width="1.4"/>
+<ellipse cx="1185.0" cy="132" rx="79.0" ry="8" fill="#E5F3EF" stroke="#1A6B58" stroke-width="1.4"/>
+<path d="M 1106.0 72 V 132" fill="none" stroke="#1A6B58" stroke-width="1.4"/>
+<path d="M 1264.0 72 V 132" fill="none" stroke="#1A6B58" stroke-width="1.4"/>
+<text x="1185.0" y="84" text-anchor="middle" font-size="11" fill="#4E6272">«хранилище»</text>
+<text x="1185.0" y="104" text-anchor="middle" font-size="13.5" font-weight="650" fill="#1C2B39">База данных</text>
+<text x="1185.0" y="122" text-anchor="middle" font-size="11" fill="#4E6272">uslugi.user</text>
+<rect x="1106.0" y="1302" width="158" height="60" fill="#E5F3EF" stroke="#1A6B58" stroke-width="1.4"/>
+<ellipse cx="1185.0" cy="1302" rx="79.0" ry="8" fill="#E5F3EF" stroke="#1A6B58" stroke-width="1.4"/>
+<ellipse cx="1185.0" cy="1362" rx="79.0" ry="8" fill="#E5F3EF" stroke="#1A6B58" stroke-width="1.4"/>
+<path d="M 1106.0 1302 V 1362" fill="none" stroke="#1A6B58" stroke-width="1.4"/>
+<path d="M 1264.0 1302 V 1362" fill="none" stroke="#1A6B58" stroke-width="1.4"/>
+<text x="1185.0" y="1314" text-anchor="middle" font-size="11" fill="#4E6272">«хранилище»</text>
+<text x="1185.0" y="1334" text-anchor="middle" font-size="13.5" font-weight="650" fill="#1C2B39">База данных</text>
+<text x="1185.0" y="1352" text-anchor="middle" font-size="11" fill="#4E6272">uslugi.user</text>
+<rect x="1284.0" y="64" width="158" height="76" rx="8" fill="#FBF3E6" stroke="#8A5A12" stroke-width="1.5"/>
+<text x="1363.0" y="84" text-anchor="middle" font-size="11" fill="#4E6272">«форма»</text>
+<text x="1363.0" y="104" text-anchor="middle" font-size="13.5" font-weight="650" fill="#1C2B39">Окно сообщения</text>
+<text x="1363.0" y="122" text-anchor="middle" font-size="11" fill="#4E6272">QMessageBox</text>
+<rect x="1284.0" y="1294" width="158" height="76" rx="8" fill="#FBF3E6" stroke="#8A5A12" stroke-width="1.5"/>
+<text x="1363.0" y="1314" text-anchor="middle" font-size="11" fill="#4E6272">«форма»</text>
+<text x="1363.0" y="1334" text-anchor="middle" font-size="13.5" font-weight="650" fill="#1C2B39">Окно сообщения</text>
+<text x="1363.0" y="1352" text-anchor="middle" font-size="11" fill="#4E6272">QMessageBox</text>
+<text x="740.0" y="1398" text-anchor="middle" font-size="13" fill="#1C2B39">Рис. 1. Регистрация пользователя: успешное создание учётной записи и возврат в меню</text>
+</svg>
