@@ -126,7 +126,7 @@ def sheet_pr1():
     txt(d, (40, 306), "ΔX = 0,06858 + Δокр 0,00175 = 0,07033", 24)
     d.rounded_rectangle([40, 370, 1160, 580], radius=16, fill=PAPER_G, outline=GREEN, width=4)
     txt(d, (60, 400), "ответ", 24, GREEN, True)
-    txt(d, (60, 460), "X = 2,5  ±  0,07033", 36, GREEN, True)
+    txt(d, (60, 460), "X = 2,50  ±  0,08", 40, GREEN, True)
     parts.append(im)
 
     im = new_im(600)
@@ -141,7 +141,7 @@ def sheet_pr1():
     txt(d, (40, 302), "ΔX = 0,35916 + Δокр 0,08255 = 0,44171", 22)
     d.rounded_rectangle([40, 370, 1160, 560], radius=16, fill=PAPER_G, outline=GREEN, width=4)
     txt(d, (60, 400), "ответ   (корень только от n, a снаружи)", 24, GREEN, True)
-    txt(d, (60, 470), "X = −19  ±  0,44171", 36, GREEN, True)
+    txt(d, (60, 470), "X = −18,92  ±  0,37", 36, GREEN, True)
     parts.append(im)
     return stack(parts)
 
