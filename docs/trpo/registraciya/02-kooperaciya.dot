@@ -1,0 +1,107 @@
+digraph coop {
+  bgcolor="white";
+  pad="0.45";
+  splines="false";
+  outputorder="edgesfirst";
+  forcelabels="true";
+
+  graph [
+    fontname="DejaVu Sans",
+    fontsize=16,
+    fontcolor="#16324F",
+    label="Диаграмма кооперации (коммуникации)\nПроцесс «Регистрация в системе»\nНомер и направление сообщения — на связи, полный текст — в легенде",
+    labelloc="t",
+    labeljust="c"
+  ];
+
+  node [
+    shape=box,
+    style="rounded,filled",
+    fillcolor="#E8F1FA",
+    color="#1F4E79",
+    penwidth=1.3,
+    fontname="DejaVu Sans",
+    fontsize=12,
+    fontcolor="#16324F",
+    margin="0.16,0.08"
+  ];
+
+  edge [
+    fontname="DejaVu Sans",
+    fontsize=11,
+    fontcolor="#16324F",
+    color="#1F4E79",
+    penwidth=1.2,
+    arrowsize=0.75
+  ];
+
+  msg  [pos="0,560!",   label=<<TABLE BORDER="0" CELLBORDER="0" CELLPADDING="1"><TR><TD><FONT POINT-SIZE="10" COLOR="#5C6B7A">«QMessageBox»</FONT></TD></TR><TR><TD><B>:ДиалогСообщения</B></TD></TR></TABLE>>];
+  user [pos="0,300!",   label=<<TABLE BORDER="0" CELLBORDER="0" CELLPADDING="1"><TR><TD><FONT POINT-SIZE="10" COLOR="#5C6B7A">«актор»</FONT></TD></TR><TR><TD><B>Пользователь</B></TD></TR></TABLE>>];
+  reg  [pos="430,300!", label=<<TABLE BORDER="0" CELLBORDER="0" CELLPADDING="1"><TR><TD><FONT POINT-SIZE="10" COLOR="#5C6B7A">«WidgetReg»</FONT></TD></TR><TR><TD><B>:ФормаРегистрации</B></TD></TR></TABLE>>];
+  val  [pos="430,560!", label=<<TABLE BORDER="0" CELLBORDER="0" CELLPADDING="1"><TR><TD><FONT POINT-SIZE="10" COLOR="#5C6B7A">«validators»</FONT></TD></TR><TR><TD><B>:МодульВалидации</B></TD></TR></TABLE>>];
+  db   [pos="980,300!", label=<<TABLE BORDER="0" CELLBORDER="0" CELLPADDING="1"><TR><TD><FONT POINT-SIZE="10" COLOR="#5C6B7A">«ConnectDB»</FONT></TD></TR><TR><TD><B>:ПодключениеБД</B></TD></TR></TABLE>>];
+  sql  [pos="1480,300!", label=<<TABLE BORDER="0" CELLBORDER="0" CELLPADDING="1"><TR><TD><FONT POINT-SIZE="10" COLOR="#5C6B7A">«MySQL»</FONT></TD></TR><TR><TD><B>:ТаблицаUser</B></TD></TR></TABLE>>];
+
+  menu [pos="0,40!",    label=<<TABLE BORDER="0" CELLBORDER="0" CELLPADDING="1"><TR><TD><FONT POINT-SIZE="10" COLOR="#5C6B7A">«MenuW»</FONT></TD></TR><TR><TD><B>:ФормаГлавногоМеню</B></TD></TR></TABLE>>];
+  ctrl [pos="430,40!",  label=<<TABLE BORDER="0" CELLBORDER="0" CELLPADDING="1"><TR><TD><FONT POINT-SIZE="10" COLOR="#5C6B7A">«Control»</FONT></TD></TR><TR><TD><B>:КонтроллерОкон</B></TD></TR></TABLE>>];
+
+  msg -> user [label="27 →"];
+  user -> reg [label="6, 7, 31 →"];
+  reg -> val  [dir=both, label="9, 11 →\n← 10, 12"];
+  reg -> db   [dir=both, label="13, 17, 21,\n24, 29 →\n← 16, 20"];
+  db -> sql   [dir=both, label="14, 18, 22,\n25, 30 →\n← 15, 19, 23"];
+  user -> menu [label="1 →"];
+  menu -> ctrl [dir=both, label="2 →    ← 3, 34"];
+  ctrl -> reg  [dir=both, label="4, 33 →\n← 32"];
+  reg -> msg [
+    label="26 →",
+    lp="215,724!",
+    pos="e,0,612 430,348 430,700 0,700 0,612"
+  ];
+
+  legend [
+    shape=none,
+    pos="740,-720!",
+    label=<
+      <TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4" COLOR="#C4A35A" BGCOLOR="#FFFBEA">
+        <TR><TD COLSPAN="3" BGCOLOR="#F4E4B8"><B>Легенда сообщений основного сценария</B></TD></TR>
+        <TR><TD BGCOLOR="#F4E4B8"><B>№</B></TD><TD BGCOLOR="#F4E4B8"><B>Отправитель → получатель</B></TD><TD BGCOLOR="#F4E4B8"><B>Сообщение</B></TD></TR>
+        <TR><TD>1</TD><TD ALIGN="LEFT">Пользователь → форма главного меню</TD><TD ALIGN="LEFT">нажать «Зарегистрироваться»</TD></TR>
+        <TR><TD>2</TD><TD ALIGN="LEFT">Форма главного меню → контроллер окон</TD><TD ALIGN="LEFT">открытьРегистрацию()</TD></TR>
+        <TR><TD>3</TD><TD ALIGN="LEFT">Контроллер окон → форма главного меню</TD><TD ALIGN="LEFT">скрыть()</TD></TR>
+        <TR><TD>4</TD><TD ALIGN="LEFT">Контроллер окон → форма регистрации</TD><TD ALIGN="LEFT">показать()</TD></TR>
+        <TR><TD>5</TD><TD ALIGN="LEFT">Форма регистрации → сама</TD><TD ALIGN="LEFT">фокус на поле «Логин»</TD></TR>
+        <TR><TD>6</TD><TD ALIGN="LEFT">Пользователь → форма регистрации</TD><TD ALIGN="LEFT">ввести логин и пароль</TD></TR>
+        <TR><TD>7</TD><TD ALIGN="LEFT">Пользователь → форма регистрации</TD><TD ALIGN="LEFT">нажать «Зарегистрироваться»</TD></TR>
+        <TR><TD>8</TD><TD ALIGN="LEFT">Форма регистрации → сама</TD><TD ALIGN="LEFT">прочитать поля и убрать крайние пробелы</TD></TR>
+        <TR><TD>9</TD><TD ALIGN="LEFT">Форма регистрации → модуль валидации</TD><TD ALIGN="LEFT">проверитьЛогин(login)</TD></TR>
+        <TR><TD>10</TD><TD ALIGN="LEFT">Модуль валидации → форма регистрации</TD><TD ALIGN="LEFT">(True, «»)</TD></TR>
+        <TR><TD>11</TD><TD ALIGN="LEFT">Форма регистрации → модуль валидации</TD><TD ALIGN="LEFT">проверитьПароль(parol)</TD></TR>
+        <TR><TD>12</TD><TD ALIGN="LEFT">Модуль валидации → форма регистрации</TD><TD ALIGN="LEFT">(True, «»)</TD></TR>
+        <TR><TD>13</TD><TD ALIGN="LEFT">Форма регистрации → подключение к БД</TD><TD ALIGN="LEFT">подключиться()</TD></TR>
+        <TR><TD>14</TD><TD ALIGN="LEFT">Подключение к БД → таблица user</TD><TD ALIGN="LEFT">CONNECT, база uslugi</TD></TR>
+        <TR><TD>15</TD><TD ALIGN="LEFT">Таблица user → подключение к БД</TD><TD ALIGN="LEFT">соединение установлено</TD></TR>
+        <TR><TD>16</TD><TD ALIGN="LEFT">Подключение к БД → форма регистрации</TD><TD ALIGN="LEFT">con, cur</TD></TR>
+        <TR><TD>17</TD><TD ALIGN="LEFT">Форма регистрации → подключение к БД</TD><TD ALIGN="LEFT">найтиПоЛогину(login)</TD></TR>
+        <TR><TD>18</TD><TD ALIGN="LEFT">Подключение к БД → таблица user</TD><TD ALIGN="LEFT">SELECT login</TD></TR>
+        <TR><TD>19</TD><TD ALIGN="LEFT">Таблица user → подключение к БД</TD><TD ALIGN="LEFT">пустой результат</TD></TR>
+        <TR><TD>20</TD><TD ALIGN="LEFT">Подключение к БД → форма регистрации</TD><TD ALIGN="LEFT">пользователь не найден</TD></TR>
+        <TR><TD>21</TD><TD ALIGN="LEFT">Форма регистрации → подключение к БД</TD><TD ALIGN="LEFT">добавить(login, parol)</TD></TR>
+        <TR><TD>22</TD><TD ALIGN="LEFT">Подключение к БД → таблица user</TD><TD ALIGN="LEFT">INSERT</TD></TR>
+        <TR><TD>23</TD><TD ALIGN="LEFT">Таблица user → подключение к БД</TD><TD ALIGN="LEFT">строка добавлена</TD></TR>
+        <TR><TD>24</TD><TD ALIGN="LEFT">Форма регистрации → подключение к БД</TD><TD ALIGN="LEFT">зафиксировать()</TD></TR>
+        <TR><TD>25</TD><TD ALIGN="LEFT">Подключение к БД → таблица user</TD><TD ALIGN="LEFT">COMMIT</TD></TR>
+        <TR><TD>26</TD><TD ALIGN="LEFT">Форма регистрации → диалог сообщения</TD><TD ALIGN="LEFT">«Вы зарегистрированы»</TD></TR>
+        <TR><TD>27</TD><TD ALIGN="LEFT">Диалог сообщения → пользователь</TD><TD ALIGN="LEFT">показать уведомление</TD></TR>
+        <TR><TD>28</TD><TD ALIGN="LEFT">Форма регистрации → сама</TD><TD ALIGN="LEFT">очистить логин и пароль</TD></TR>
+        <TR><TD>29</TD><TD ALIGN="LEFT">Форма регистрации → подключение к БД</TD><TD ALIGN="LEFT">закрыть()</TD></TR>
+        <TR><TD>30</TD><TD ALIGN="LEFT">Подключение к БД → таблица user</TD><TD ALIGN="LEFT">закрыть соединение</TD></TR>
+        <TR><TD>31</TD><TD ALIGN="LEFT">Пользователь → форма регистрации</TD><TD ALIGN="LEFT">нажать «Назад»</TD></TR>
+        <TR><TD>32</TD><TD ALIGN="LEFT">Форма регистрации → контроллер окон</TD><TD ALIGN="LEFT">открытьМеню()</TD></TR>
+        <TR><TD>33</TD><TD ALIGN="LEFT">Контроллер окон → форма регистрации</TD><TD ALIGN="LEFT">скрыть()</TD></TR>
+        <TR><TD>34</TD><TD ALIGN="LEFT">Контроллер окон → форма главного меню</TD><TD ALIGN="LEFT">показать()</TD></TR>
+        <TR><TD COLSPAN="3" ALIGN="LEFT">Сообщения 5, 8 и 28 выполняются внутри формы регистрации. Ветви A1–A6 — на диаграмме последовательности.</TD></TR>
+      </TABLE>
+    >
+  ];
+}
