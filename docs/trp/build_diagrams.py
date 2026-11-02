@@ -777,6 +777,21 @@ def build_communication() -> tuple[str, int, int]:
     parts.append("</svg>")
     return "\n".join(parts), width, height
 
+def stop_chrome(proc: subprocess.Popen[bytes]) -> None:
+    """Stop Chrome if it is still running and always reap the process."""
+    if proc.poll() is None:
+        try:
+            os.killpg(proc.pid, signal.SIGKILL)
+        except ProcessLookupError:
+            # Chrome may exit between poll() and killpg().
+            pass
+    try:
+        proc.wait(timeout=5)
+    except subprocess.TimeoutExpired:
+        proc.kill()
+        proc.wait(timeout=5)
+
+
 def write_svg(name: str, svg: str, width: int, height: int) -> None:
     IMG.mkdir(parents=True, exist_ok=True)
     svg_path = IMG / f"{name}.svg"
@@ -830,10 +845,9 @@ def write_svg(name: str, svg: str, width: int, height: int) -> None:
             last_size = size
         time.sleep(0.25)
     else:
-        os.killpg(proc.pid, signal.SIGKILL)
+        stop_chrome(proc)
         raise RuntimeError(f"screenshot failed for {name}")
-    os.killpg(proc.pid, signal.SIGKILL)
-    proc.wait(timeout=5)
+    stop_chrome(proc)
     print(f"{name}: {width}x{height} -> {png_path.stat().st_size} bytes")
 
 
